@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iTech • Equipos Ensamblados Premium</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+    <!-- NAVBAR -->
+    <nav class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="flex items-center">
+                        <img src="img/logo.jpg" alt="iTech Logo" class="h-11 w-auto rounded-lg">
+                    </div>
+                    <div>
+                        <span class="logo-font text-3xl font-bold tracking-tighter">iTech</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                    <a href="#" class="nav-link text-zinc-300 hover:text-white">Inicio</a>
+                    <a href="#productos" class="nav-link text-zinc-300 hover:text-white">Equipos</a>
+                    <a href="#categorias" class="nav-link text-zinc-300 hover:text-white">Categorías</a>
+                    <a href="#ofertas" class="nav-link text-zinc-300 hover:text-white">Ofertas</a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex flex-1 max-w-md mx-8">
+                    <div class="relative w-full">
+                        <input 
+                            type="text" 
+                            id="search-input"
+                            placeholder="Buscar equipos ensamblados..." 
+                            class="w-full bg-zinc-900 border border-zinc-700 focus:border-blue-500 transition-colors text-sm rounded-2xl pl-11 py-3 placeholder:text-zinc-500 outline-none"
+                        >
+                        <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500"></i>
+                    </div>
+                </div>
+
+                <!-- Right side actions -->
+                <div class="flex items-center gap-x-3">
+                    <!-- Cart -->
+                    <button onclick="showCartModal()" 
+                            class="flex items-center gap-x-2 px-4 py-2.5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-all active:scale-[0.985]">
+                        <div class="relative">
+                            <i class="fa-solid fa-shopping-cart text-xl"></i>
+                            <span id="cart-count" 
+                                  class="absolute -top-1.5 -right-1.5 bg-blue-600 text-white text-[10px] font-bold min-w-[18px] h-[18px] flex items-center justify-center rounded-full px-1">0</span>
+                        </div>
+                        <span class="hidden lg:block text-sm font-medium">Carrito</span>
+                    </button>
+
+                    <!-- Account -->
+                    <button class="flex items-center gap-x-2 px-4 py-2.5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-all active:scale-[0.985]">
+                        <i class="fa-solid fa-user text-xl"></i>
+                        <span class="hidden lg:block text-sm font-medium">Cuenta</span>
+                    </button>
+
+                    <!-- Mobile menu -->
+                    <button class="md:hidden p-3 text-zinc-400 hover:text-white" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="tech-bg border-b border-zinc-800">
+        <div class="max-w-screen-2xl mx-auto px-8 pt-16 pb-20">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7">
+                    <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-zinc-900 border border-zinc-700 mb-6">
+                        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                        <span class="text-emerald-400 text-sm font-semibold tracking-wider">NUEVA TEMPORADA 2026</span>
+                    </div>
+                    
+                    <h1 class="text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-4">
+                        Equipos ensamblados<br>
+                        <span class="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">listos para usar</span>.
+                    </h1>
+                    
+                    <p class="max-w-lg text-xl text-zinc-400 mb-8">
+                        PCs gaming, workstations y equipos profesionales ensamblados con los mejores componentes. 
+                        Solo enchufa y empieza a crear.
+                    </p>
+                    
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="#productos" 
+                           class="inline-flex items-center justify-center gap-x-3 bg-white text-zinc-900 hover:bg-zinc-100 transition-all font-semibold px-8 h-14 rounded-3xl text-base active:scale-[0.985]">
+                            <span>Explorar equipos</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        
+                        <button onclick="document.getElementById('categorias').scrollIntoView({ behavior: 'smooth' })" 
+                                class="inline-flex items-center justify-center gap-x-3 border border-zinc-700 hover:bg-zinc-900 transition-all font-semibold px-8 h-14 rounded-3xl text-base">
+                            Ver categorías
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-x-8 mt-10">
+                        <div>
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full ring-2 ring-zinc-950 overflow-hidden"><img src="https://picsum.photos/id/1005/32/32" class="object-cover"></div>
+                                <div class="w-8 h-8 rounded-full ring-2 ring-zinc-950 overflow-hidden"><img src="https://picsum.photos/id/1011/32/32" class="object-cover"></div>
+                                <div class="w-8 h-8 rounded-full ring-2 ring-zinc-950 overflow-hidden"><img src="https://picsum.photos/id/1009/32/32" class="object-cover"></div>
+                            </div>
+                        </div>
+                        <div class="text-sm">
+                            <span class="font-semibold">+48,200</span> 
+                            <span class="text-zinc-400">clientes satisfechos</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero visual -->
+                <div class="md:col-span-5 relative">
+                    <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-2 shadow-2xl">
+                        <div class="bg-zinc-950 rounded-2xl overflow-hidden aspect-video flex items-center justify-center relative">
+                            <img src="img/logo.jpg" alt="iTech" class="w-4/5 opacity-90">
+                            <div class="absolute inset-0 bg-gradient-to-br from-zinc-950/60 via-transparent to-transparent"></div>
+                            
+                            <div class="absolute bottom-4 right-4 bg-zinc-900/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-zinc-700 flex items-center gap-x-2 text-sm">
+                                <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                                <span class="font-medium">Envío en 24h</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATS BAR -->
+    <div class="border-b border-zinc-800 bg-zinc-900">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-6">
+                <div class="flex items-center gap-x-4">
+                    <div class="text-4xl font-bold text-blue-400">98k</div>
+                    <div class="leading-tight">
+                        <div class="font-semibold">Equipos vendidos</div>
+                        <div class="text-xs text-zinc-400">este mes</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-4">
+                    <div class="text-4xl font-bold text-blue-400">4.9</div>
+                    <div class="leading-tight">
+                        <div class="font-semibold">Calificación promedio</div>
+                        <div class="text-xs text-zinc-400">de 12,450 reseñas</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-4">
+                    <div class="text-4xl font-bold text-blue-400">48</div>
+                    <div class="leading-tight">
+                        <div class="font-semibold">Modelos disponibles</div>
+                        <div class="text-xs text-zinc-400">en catálogo</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-4">
+                    <div class="text-4xl font-bold text-blue-400">48</div>
+                    <div class="leading-tight">
+                        <div class="font-semibold">Países con envíos</div>
+                        <div class="text-xs text-zinc-400">internacionales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATEGORÍAS -->
+    <section id="categorias" class="max-w-screen-2xl mx-auto px-8 pt-16 pb-12">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <span class="text-blue-400 text-sm font-semibold tracking-[1.5px]">EXPLORA POR CATEGORÍA</span>
+                <h2 class="section-header tracking-tighter">Encuentra el equipo perfecto</h2>
+            </div>
+            <a href="#productos" class="hidden md:flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+                Ver todos los equipos <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+            <!-- Category Cards -->
+            <div onclick="filterByCategory('gaming')" class="category-card cursor-pointer group bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-blue-600 rounded-3xl p-5 flex flex-col items-center text-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-zinc-800 group-hover:bg-blue-950 rounded-2xl mb-4 transition-colors">
+                    <i class="fa-solid fa-gamepad text-3xl text-blue-400"></i>
+                </div>
+                <div class="font-semibold">Gaming</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Alto rendimiento • RGB</div>
+            </div>
+            
+            <div onclick="filterByCategory('workstation')" class="category-card cursor-pointer group bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-blue-600 rounded-3xl p-5 flex flex-col items-center text-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-zinc-800 group-hover:bg-blue-950 rounded-2xl mb-4 transition-colors">
+                    <i class="fa-solid fa-laptop-code text-3xl text-blue-400"></i>
+                </div>
+                <div class="font-semibold">Workstation</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Productividad • Render</div>
+            </div>
+            
+            <div onclick="filterByCategory('creator')" class="category-card cursor-pointer group bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-blue-600 rounded-3xl p-5 flex flex-col items-center text-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-zinc-800 group-hover:bg-blue-950 rounded-2xl mb-4 transition-colors">
+                    <i class="fa-solid fa-video text-3xl text-blue-400"></i>
+                </div>
+                <div class="font-semibold">Creator</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Edición • Streaming</div>
+            </div>
+            
+            <div onclick="filterByCategory('oficina')" class="category-card cursor-pointer group bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-blue-600 rounded-3xl p-5 flex flex-col items-center text-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-zinc-800 group-hover:bg-blue-950 rounded-2xl mb-4 transition-colors">
+                    <i class="fa-solid fa-briefcase text-3xl text-blue-400"></i>
+                </div>
+                <div class="font-semibold">Oficina</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Productividad diaria</div>
+            </div>
+            
+            <div onclick="filterByCategory('mini')" class="category-card cursor-pointer group bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-blue-600 rounded-3xl p-5 flex flex-col items-center text-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-zinc-800 group-hover:bg-blue-950 rounded-2xl mb-4 transition-colors">
+                    <i class="fa-solid fa-compact-disc text-3xl text-blue-400"></i>
+                </div>
+                <div class="font-semibold">Mini PCs</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Compactos • Silenciosos</div>
+            </div>
+            
+            <div onclick="filterByCategory('allinone')" class="category-card cursor-pointer group bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-blue-600 rounded-3xl p-5 flex flex-col items-center text-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-zinc-800 group-hover:bg-blue-950 rounded-2xl mb-4 transition-colors">
+                    <i class="fa-solid fa-desktop text-3xl text-blue-400"></i>
+                </div>
+                <div class="font-semibold">Todo en Uno</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Diseño integrado</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS DESTACADOS -->
+    <section id="productos" class="max-w-screen-2xl mx-auto px-8 pb-16">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <span class="text-blue-400 text-sm font-semibold tracking-[1.5px]">LISTOS PARA USAR</span>
+                <h2 class="section-header tracking-tighter">Equipos ensamblados destacados</h2>
+            </div>
+            <div class="flex items-center gap-x-3">
+                <button onclick="resetFilters()" 
+                        class="text-sm px-5 py-2 rounded-2xl border border-zinc-700 hover:bg-zinc-900 transition-colors flex items-center gap-x-2">
+                    <i class="fa-solid fa-sync-alt"></i>
+                    <span class="hidden sm:inline">Limpiar filtros</span>
+                </button>
+                <a href="#productos" class="text-sm font-semibold flex items-center gap-x-2 text-blue-400 hover:text-blue-300">
+                    Ver todo el catálogo <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5">
+            <!-- Products populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- OFERTAS ESPECIALES -->
+    <section id="ofertas" class="bg-zinc-900 border-y border-zinc-800">
+        <div class="max-w-screen-2xl mx-auto px-8 py-16">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-y-4 mb-10">
+                <div>
+                    <span class="px-4 py-1 text-xs tracking-widest font-bold bg-orange-500/10 text-orange-400 rounded-3xl">OFERTA LIMITADA</span>
+                    <h2 class="section-header tracking-tighter mt-2">Ofertas en equipos ensamblados</h2>
+                </div>
+                <a href="#ofertas" class="text-sm font-semibold px-6 py-3 border border-zinc-700 hover:bg-zinc-800 rounded-3xl flex items-center gap-x-2 transition-colors">
+                    Ver todas las ofertas <i class="fa-solid fa-tags ml-2"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5">
+                <!-- Offer 1 -->
+                <div class="bg-zinc-950 border border-zinc-700 rounded-3xl p-6 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs px-3 py-1 bg-red-500/10 text-red-400 rounded-2xl font-bold">15% OFF</span>
+                        </div>
+                        <i class="fa-solid fa-fire text-orange-400 text-xl"></i>
+                    </div>
+                    <div class="mt-6">
+                        <div class="text-sm text-zinc-400">iTech Gaming</div>
+                        <div class="font-semibold text-2xl">Gamer Pro RTX 4070</div>
+                        <div class="mt-1 text-sm">i7-14700K • 32GB DDR5 • 1TB NVMe</div>
+                        
+                        <div class="mt-5 flex items-baseline gap-x-2">
+                            <span class="text-4xl font-bold">$1,699</span>
+                            <span class="line-through text-zinc-500">$1,999</span>
+                        </div>
+                        
+                        <button onclick="addToCartFromOffer(0)" 
+                                class="mt-6 w-full bg-orange-500 hover:bg-orange-600 transition-colors text-white font-semibold py-3.5 rounded-2xl flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Añadir al carrito</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offer 2 -->
+                <div class="bg-zinc-950 border border-zinc-700 rounded-3xl p-6 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs px-3 py-1 bg-red-500/10 text-red-400 rounded-2xl font-bold">10% OFF</span>
+                        </div>
+                        <i class="fa-solid fa-fire text-orange-400 text-xl"></i>
+                    </div>
+                    <div class="mt-6">
+                        <div class="text-sm text-zinc-400">iTech Creator</div>
+                        <div class="font-semibold text-2xl">Creator Studio</div>
+                        <div class="mt-1 text-sm">i9-14900K • RTX 4080 Super • 64GB</div>
+                        
+                        <div class="mt-5 flex items-baseline gap-x-2">
+                            <span class="text-4xl font-bold">$2,249</span>
+                            <span class="line-through text-zinc-500">$2,499</span>
+                        </div>
+                        
+                        <button onclick="addToCartFromOffer(1)" 
+                                class="mt-6 w-full bg-orange-500 hover:bg-orange-600 transition-colors text-white font-semibold py-3.5 rounded-2xl flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Añadir al carrito</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Offer 3 -->
+                <div class="bg-zinc-950 border border-zinc-700 rounded-3xl p-6 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs px-3 py-1 bg-red-500/10 text-red-400 rounded-2xl font-bold">20% OFF</span>
+                        </div>
+                        <i class="fa-solid fa-fire text-orange-400 text-xl"></i>
+                    </div>
+                    <div class="mt-6">
+                        <div class="text-sm text-zinc-400">iTech Office</div>
+                        <div class="font-semibold text-2xl">Office Elite</div>
+                        <div class="mt-1 text-sm">i5-14500 • 32GB DDR5 • 1TB NVMe</div>
+                        
+                        <div class="mt-5 flex items-baseline gap-x-2">
+                            <span class="text-4xl font-bold">$719</span>
+                            <span class="line-through text-zinc-500">$899</span>
+                        </div>
+                        
+                        <button onclick="addToCartFromOffer(2)" 
+                                class="mt-6 w-full bg-orange-500 hover:bg-orange-600 transition-colors text-white font-semibold py-3.5 rounded-2xl flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Añadir al carrito</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section class="max-w-screen-2xl mx-auto px-8 py-16">
+        <div class="text-center mb-12">
+            <span class="text-blue-400 text-sm font-semibold tracking-[1.5px]">LA MEJOR EXPERIENCIA</span>
+            <h2 class="section-header tracking-tighter mt-1">¿Por qué comprar un equipo iTech?</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-7">
+                <div class="w-12 h-12 bg-blue-950 text-blue-400 rounded-2xl flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-truck-fast text-2xl"></i>
+                </div>
+                <div class="font-semibold text-xl mb-2">Envío express</div>
+                <p class="text-zinc-400 text-[15px]">Recibe tu equipo ensamblado y probado en 24-48 horas. Listo para usar desde el primer día.</p>
+            </div>
+            
+            <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-7">
+                <div class="w-12 h-12 bg-blue-950 text-blue-400 rounded-2xl flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                </div>
+                <div class="font-semibold text-xl mb-2">Garantía extendida</div>
+                <p class="text-zinc-400 text-[15px]">3 años de garantía en todos los equipos + soporte técnico prioritario y actualizaciones.</p>
+            </div>
+            
+            <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-7">
+                <div class="w-12 h-12 bg-blue-950 text-blue-400 rounded-2xl flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-headset text-2xl"></i>
+                </div>
+                <div class="font-semibold text-xl mb-2">Soporte experto</div>
+                <p class="text-zinc-400 text-[15px]">Nuestro equipo de ingenieros te ayuda a elegir el equipo ideal y resuelve cualquier duda post-venta.</p>
+            </div>
+            
+            <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-7">
+                <div class="w-12 h-12 bg-blue-950 text-blue-400 rounded-2xl flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-sync text-2xl"></i>
+                </div>
+                <div class="font-semibold text-xl mb-2">Devoluciones fáciles</div>
+                <p class="text-zinc-400 text-[15px]">30 días para cambios y devoluciones sin complicaciones. Tu satisfacción es nuestra prioridad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="max-w-screen-2xl mx-auto px-8 pb-20">
+        <div class="text-center mb-10">
+            <span class="text-blue-400 text-sm font-semibold tracking-[1.5px]">LO QUE DICEN NUESTROS CLIENTES</span>
+            <h2 class="section-header tracking-tighter mt-1">Confían en iTech</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-7">
+                <div class="flex gap-x-1 text-amber-400 mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <p class="italic">"Compré el Gamer Pro RTX 4070 para streaming y gaming. Llegó ensamblado, probado y con Windows listo. El rendimiento es brutal."</p>
+                <div class="mt-6 flex items-center gap-x-3">
+                    <img src="https://picsum.photos/id/1005/40/40" class="rounded-full w-10 h-10 object-cover ring-2 ring-zinc-700">
+                    <div>
+                        <div class="font-semibold">Carlos Mendoza</div>
+                        <div class="text-xs text-zinc-400">Streamer • Ciudad de México</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-7">
+                <div class="flex gap-x-1 text-amber-400 mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="italic">"El Creator Studio es una bestia para edición 4K y renderizado. El soporte me ayudó a elegir la configuración perfecta para mi estudio."</p>
+                <div class="mt-6 flex items-center gap-x-3">
+                    <img src="https://picsum.photos/id/1011/40/40" class="rounded-full w-10 h-10 object-cover ring-2 ring-zinc-700">
+                    <div>
+                        <div class="font-semibold">Laura Pérez</div>
+                        <div class="text-xs text-zinc-400">Editora de Video • Guadalajara</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-7">
+                <div class="flex gap-x-1 text-amber-400 mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="italic">"El Office Elite es perfecto para mi empresa. 8 equipos llegaron listos para usar, con todo instalado. Excelente relación calidad-precio."</p>
+                <div class="mt-6 flex items-center gap-x-3">
+                    <img src="https://picsum.photos/id/1009/40/40" class="rounded-full w-10 h-10 object-cover ring-2 ring-zinc-700">
+                    <div>
+                        <div class="font-semibold">Miguel Ángel Torres</div>
+                        <div class="text-xs text-zinc-400">Director TI • Monterrey</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-zinc-800 pt-12 pb-8">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-y-10">
+                <div class="col-span-2 md:col-span-1">
+                    <div class="flex items-center gap-x-2 mb-4">
+                        <img src="img/logo.jpg" alt="iTech" class="h-9 w-auto rounded">
+                        <span class="logo-font text-2xl font-bold">iTech</span>
+                    </div>
+                    <p class="text-xs text-zinc-400 max-w-[200px]">Equipos ensamblados de alto rendimiento. Innovación y tecnología lista para usar.</p>
+                </div>
+                
+                <div>
+                    <div class="font-semibold mb-4 text-sm tracking-wider">TIENDA</div>
+                    <div class="space-y-2.5 text-sm text-zinc-400">
+                        <div><a href="#productos" class="hover:text-white">Todos los equipos</a></div>
+                        <div><a href="#ofertas" class="hover:text-white">Ofertas</a></div>
+                        <div><a href="#categorias" class="hover:text-white">Categorías</a></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="font-semibold mb-4 text-sm tracking-wider">SOPORTE</div>
+                    <div class="space-y-2.5 text-sm text-zinc-400">
+                        <div><a href="#" class="hover:text-white">Centro de ayuda</a></div>
+                        <div><a href="#" class="hover:text-white">Garantía</a></div>
+                        <div><a href="#" class="hover:text-white">Devoluciones</a></div>
+                        <div><a href="#" class="hover:text-white">Configuración inicial</a></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="font-semibold mb-4 text-sm tracking-wider">EMPRESA</div>
+                    <div class="space-y-2.5 text-sm text-zinc-400">
+                        <div><a href="#" class="hover:text-white">Sobre nosotros</a></div>
+                        <div><a href="#" class="hover:text-white">Blog</a></div>
+                        <div><a href="#" class="hover:text-white">Carreras</a></div>
+                        <div><a href="#" class="hover:text-white">Contacto</a></div>
+                    </div>
+                </div>
+                
+                <div class="col-span-2 md:col-span-1">
+                    <div class="font-semibold mb-4 text-sm tracking-wider">NEWSLETTER</div>
+                    <p class="text-xs text-zinc-400 mb-3">Recibe ofertas exclusivas y lanzamientos de nuevos modelos.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="tu@email.com" class="flex-1 bg-zinc-900 border border-zinc-700 text-sm rounded-l-2xl px-4 py-3 outline-none focus:border-blue-500">
+                        <button class="bg-blue-600 hover:bg-blue-500 transition-colors px-5 rounded-r-2xl text-sm font-semibold">Unirme</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-14 pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-y-4 text-xs text-zinc-500">
+                <div>© 2026 iTech Innovation &amp; Technology. Todos los derechos reservados.</div>
+                <div class="flex gap-x-5">
+                    <a href="#" class="hover:text-zinc-300">Privacidad</a>
+                    <a href="#" class="hover:text-zinc-300">Términos</a>
+                    <a href="#" class="hover:text-zinc-300">Cookies</a>
+                </div>
+                <div class="flex gap-x-4 text-base">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT QUICK VIEW MODAL -->
+    <div id="product-modal" onclick="if (event.target.id === 'product-modal') hideProductModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 border border-zinc-700 w-full max-w-2xl rounded-3xl overflow-hidden">
+            <div class="flex flex-col md:flex-row">
+                <!-- Image -->
+                <div class="md:w-5/12 bg-zinc-950 flex items-center justify-center p-8">
+                    <img id="modal-product-image" class="max-h-[260px] w-auto rounded-2xl" alt="">
+                </div>
+                
+                <!-- Details -->
+                <div class="md:w-7/12 p-8">
+                    <div class="flex justify-between">
+                        <div>
+                            <div id="modal-product-brand" class="text-blue-400 text-sm font-semibold"></div>
+                            <h3 id="modal-product-name" class="text-2xl font-bold tracking-tight"></h3>
+                        </div>
+                        <button onclick="hideProductModal()" class="text-zinc-400 hover:text-white text-2xl leading-none">×</button>
+                    </div>
+                    
+                    <div id="modal-product-rating" class="flex items-center gap-x-1 mt-2 text-amber-400"></div>
+                    
+                    <div class="my-5">
+                        <div id="modal-product-price" class="text-4xl font-bold"></div>
+                        <div id="modal-product-original-price" class="text-sm text-zinc-400 line-through"></div>
+                    </div>
+                    
+                    <div id="modal-product-specs" class="text-sm text-zinc-300 leading-relaxed mb-6"></div>
+                    
+                    <div class="flex gap-x-3">
+                        <button onclick="addCurrentProductToCart()" 
+                                class="flex-1 bg-white hover:bg-zinc-100 active:bg-zinc-200 transition-all text-zinc-900 font-semibold py-3.5 rounded-2xl flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>Añadir al carrito</span>
+                        </button>
+                        
+                        <button onclick="hideProductModal()" 
+                                class="px-6 border border-zinc-600 hover:bg-zinc-800 transition-all rounded-2xl font-medium">
+                            Cerrar
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4 text-[10px] text-center text-zinc-500 flex items-center justify-center gap-x-1.5">
+                        <i class="fa-solid fa-shield-halved"></i> 
+                        <span>Garantía de 3 años incluida • Probado y listo para usar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div id="cart-modal" onclick="if (event.target.id === 'cart-modal') hideCartModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex justify-end">
+        <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 w-full max-w-md h-full border-l border-zinc-700 flex flex-col">
+            <!-- Cart Header -->
+            <div class="px-6 pt-6 pb-4 border-b border-zinc-700 flex items-center justify-between">
+                <div class="flex items-center gap-x-3">
+                    <i class="fa-solid fa-shopping-cart text-2xl"></i>
+                    <div>
+                        <div class="font-semibold text-xl">Tu carrito</div>
+                        <div id="cart-items-count" class="text-xs text-zinc-400">0 productos</div>
+                    </div>
+                </div>
+                <button onclick="hideCartModal()" class="text-3xl leading-none text-zinc-400 hover:text-white">×</button>
+            </div>
+            
+            <!-- Cart Items -->
+            <div id="cart-items" class="flex-1 overflow-auto p-6 space-y-5 text-sm">
+                <!-- Populated dynamically -->
+            </div>
+            
+            <!-- Cart Footer -->
+            <div class="p-6 border-t border-zinc-700 bg-zinc-950">
+                <div class="flex justify-between items-baseline mb-4 px-1">
+                    <div class="text-zinc-300">Total</div>
+                    <div id="cart-total" class="text-3xl font-bold">$0</div>
+                </div>
+                
+                <button onclick="checkout()" 
+                        class="w-full py-4 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 transition-colors rounded-2xl font-semibold flex items-center justify-center gap-x-2">
+                    <span>Proceder al pago</span>
+                </button>
+                
+                <div class="text-center mt-3">
+                    <button onclick="hideCartModal()" class="text-xs text-zinc-400 hover:text-zinc-300">Seguir comprando</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="hidden fixed bottom-5 right-5 bg-zinc-800 border border-zinc-600 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-x-3 z-[200]">
+        <i class="fa-solid fa-check-circle text-emerald-400"></i>
+        <span id="toast-message"></span>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
